@@ -1,0 +1,72 @@
+<!-- sign-up-form.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Messages</title>
+</head>
+
+<body>
+  <% if (user) { %>
+
+    <h1>Messages</h1>
+    <form action="/message" method="post">
+      <label for="messageTitle">Mesaj Başlığı</label>
+      <input id="messageTitle" name="messageTitle" required></input>
+      <label for="messageContent">Mesaj İçeriği:</label>
+      <textarea id="messageContent" name="messageContent" required></textarea>
+      <button type="submit">Gönder</button>
+    </form>
+    <% } %>
+      <div class="messages">
+        <% if (user) { %>
+          <% if (messages && messages.length> 0) { %>
+            <ul>
+              <% messages.forEach(message=> { %>
+                <li>
+                  <strong>User:</strong>
+                  <%= user.FirstName %><br>
+                    <strong>Title:</strong>
+                    <%= message.Title %><br>
+                      <strong>Date:</strong>
+                      <%= message.TimeStamp %><br>
+                        <strong>Content:</strong>
+                        <%= message.TextContent %><br>
+                          <% if (user.IsAdmin) { %>
+                            <!-- Mesaj silme formu -->
+                            <!-- Mesaj silme formu -->
+                            <form action="/message/<%= message.ID %>?_method=DELETE" method="POST"
+                              style="display:inline;">
+                              <!-- method-override modülü tarafından kullanılacak gizli alan -->
+                              <input type="hidden" name="_method" value="DELETE">
+                              <button type="submit">Delete</button>
+                            </form>
+                            <% } %>
+
+                </li>
+                <% }); %>
+            </ul>
+            <% } else { %>
+              <p>No messages available.</p>
+              <% } %>
+                <% } else { %>
+                  <% if (messages && messages.length> 0) { %>
+                    <ul>
+                      <% messages.forEach(message=> { %>
+                        <li>
+                          <strong>Title:</strong>
+                          <%= message.Title %><br>
+                            <strong>Content:</strong>
+                            <%= message.TextContent %><br>
+                        </li>
+                        <% }); %>
+                    </ul>
+                    <% } else { %>
+                      <p>No messages available.</p>
+                      <% } %>
+                        <% } %>
+      </div>
+</body>
+
+</html>

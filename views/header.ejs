@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="header">
+    <h1 class="title"><%= title %></h1>
+    <% if (user) { %>
+      <a href="/message">Yeni Mesaj Oluştur</a>
+    <% } %>
+  </div>
+  </body>
+</html>
