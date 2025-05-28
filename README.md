@@ -1,7 +1,7 @@
 # 🔐 Member Only App
 
 **Member Only App** is a secure messaging platform where users can sign up, receive a secret access code via email, and join exclusive chat groups based on their verified membership. The application demonstrates secure access via email-based verification using `nodemailer`.
-
+ 
 ---
 
 ## 🎯 Features
